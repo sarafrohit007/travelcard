@@ -1,6 +1,6 @@
 package com.example.TravelCard.dto.paymentgateway.paytm;
 
-import com.example.TravelCard.dto.paymentgateway.PaymentGateWayProvider;
+import com.example.TravelCard.dto.PaymentGateWayProvider;
 
 public class PaytmServiceImpl implements PaymentGateWayProvider{
 
