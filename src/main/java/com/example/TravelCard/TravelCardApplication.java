@@ -10,6 +10,8 @@ public class TravelCardApplication {
 		SpringApplication.run(TravelCardApplication.class, args);
 		System.out.println("Printing result finally.....");
 	}
+	
+	
 
 }
 

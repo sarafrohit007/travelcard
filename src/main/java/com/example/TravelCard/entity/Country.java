@@ -89,7 +89,7 @@ public class Country implements Serializable {
 		this.flag_url = flag_url;
 	}
 
-	@Column(name = "operation_enabled")
+	@Column(name = "operation_enabled", nullable = false)
 	public boolean isOperation_enabled() {
 		return operation_enabled;
 	}
