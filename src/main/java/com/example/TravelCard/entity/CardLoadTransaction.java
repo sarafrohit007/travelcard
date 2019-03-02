@@ -4,7 +4,13 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -31,6 +37,11 @@ public class CardLoadTransaction implements Serializable {
 
 	private BigDecimal amount;
 
+	private User user;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false, unique = true)
 	public Long getId() {
 		return id;
 	}
@@ -39,6 +50,7 @@ public class CardLoadTransaction implements Serializable {
 		this.id = id;
 	}
 
+	@Column(name = "created")
 	public Date getCreated() {
 		return created;
 	}
@@ -47,6 +59,7 @@ public class CardLoadTransaction implements Serializable {
 		this.created = created;
 	}
 
+	@Column(name = "updated")
 	public Date getUpdated() {
 		return updated;
 	}
@@ -55,6 +68,8 @@ public class CardLoadTransaction implements Serializable {
 		this.updated = updated;
 	}
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@Column(name="paymentcard_info_id")
 	public PaymentCardInfo getPaymentCardInfo() {
 		return paymentCardInfo;
 	}
@@ -63,6 +78,7 @@ public class CardLoadTransaction implements Serializable {
 		this.paymentCardInfo = paymentCardInfo;
 	}
 
+	@Column(name = "status")
 	public String getStatus() {
 		return status;
 	}
@@ -71,6 +87,7 @@ public class CardLoadTransaction implements Serializable {
 		this.status = status;
 	}
 
+	@Column(name = "mode")
 	public String getMode() {
 		return mode;
 	}
@@ -79,6 +96,7 @@ public class CardLoadTransaction implements Serializable {
 		this.mode = mode;
 	}
 
+	@Column(name = "amount")
 	public BigDecimal getAmount() {
 		return amount;
 	}
@@ -87,11 +105,24 @@ public class CardLoadTransaction implements Serializable {
 		this.amount = amount;
 	}
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@Column(name = "user_id")
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public String toString() {
 		return "CardLoadTransaction [id=" + id + ", created=" + created + ", updated=" + updated + ", paymentCardInfo="
-				+ paymentCardInfo + ", status=" + status + ", mode=" + mode + ", amount=" + amount + "]";
+				+ paymentCardInfo + ", status=" + status + ", mode=" + mode + ", amount=" + amount + ", user=" + user
+				+ "]";
 	}
+
+
 
 	public enum CardLoadTrxnStatus {
 

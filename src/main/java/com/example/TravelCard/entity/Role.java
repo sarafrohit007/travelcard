@@ -2,7 +2,11 @@ package com.example.TravelCard.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -14,17 +18,18 @@ public class Role implements Serializable {
 	 */
 	private static final long serialVersionUID = -3922497584575818147L;
 
-	private Long id;
+	private Integer id;
 
 	private String name;
 
-	private User userId;
-
-	public Long getId() {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -36,17 +41,11 @@ public class Role implements Serializable {
 		this.name = name;
 	}
 
-	public User getUserId() {
-		return userId;
-	}
-
-	public void setUserId(User userId) {
-		this.userId = userId;
-	}
-
 	@Override
 	public String toString() {
-		return "Role [id=" + id + ", name=" + name + ", userId=" + userId + "]";
+		return "Role [id=" + id + ", name=" + name + "]";
 	}
+
+	
 
 }
