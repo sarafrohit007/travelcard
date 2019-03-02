@@ -4,8 +4,12 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -82,6 +86,8 @@ public class PaymentCardInfo implements Serializable {
 
 	private Set<User> user;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}
@@ -90,6 +96,7 @@ public class PaymentCardInfo implements Serializable {
 		this.id = id;
 	}
 
+	@Column(name = "cardNumber")
 	public String getCardNumber() {
 		return cardNumber;
 	}
@@ -98,6 +105,7 @@ public class PaymentCardInfo implements Serializable {
 		this.cardNumber = cardNumber;
 	}
 
+	@Column(name = "displayName")
 	public String getDisplayName() {
 		return displayName;
 	}
@@ -106,6 +114,7 @@ public class PaymentCardInfo implements Serializable {
 		this.displayName = displayName;
 	}
 
+	@Column(name = "validThrough")
 	public String getValidThrough() {
 		return validThrough;
 	}
@@ -114,6 +123,7 @@ public class PaymentCardInfo implements Serializable {
 		this.validThrough = validThrough;
 	}
 
+	@Column(name = "card_issued_by")
 	public String getCardIssuedBy() {
 		return cardIssuedBy;
 	}
@@ -122,6 +132,7 @@ public class PaymentCardInfo implements Serializable {
 		this.cardIssuedBy = cardIssuedBy;
 	}
 
+	@Column(name = "card_issuing_bank")
 	public String getCardIssuingBank() {
 		return cardIssuingBank;
 	}
@@ -130,6 +141,7 @@ public class PaymentCardInfo implements Serializable {
 		this.cardIssuingBank = cardIssuingBank;
 	}
 
+	@Column(name = "enable")
 	public boolean isEnable() {
 		return enable;
 	}
@@ -138,6 +150,7 @@ public class PaymentCardInfo implements Serializable {
 		this.enable = enable;
 	}
 
+	@Column(name = "created")
 	public Date getCreated() {
 		return created;
 	}
@@ -146,6 +159,7 @@ public class PaymentCardInfo implements Serializable {
 		this.created = created;
 	}
 
+	@Column(name = "updated")
 	public Date getUpdated() {
 		return updated;
 	}
