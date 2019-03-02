@@ -108,7 +108,7 @@ public class User implements Serializable {
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	@Where(clause = "enabled=1")
+	@Where(clause = "enable=1")
 	@JoinTable(name = "user_card_map", catalog = "paymentdb", joinColumns = {
 			@JoinColumn(name = "traveller_id") }, inverseJoinColumns = { @JoinColumn(name = "payment_card_info_id") })
 	public Set<PaymentCardInfo> getPaymentCardInfoSet() {

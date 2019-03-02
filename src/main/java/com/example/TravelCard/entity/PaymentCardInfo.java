@@ -12,6 +12,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name = "payment_card_info", catalog = "paymentdb")
 public class PaymentCardInfo implements Serializable {
@@ -153,6 +155,7 @@ public class PaymentCardInfo implements Serializable {
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)
+	@Where(clause = "enable=1")
 	@NotNull
 	@JoinTable(name ="user_card_map", catalog = "paymentdb" , joinColumns={@JoinColumn (name = "payment_card_info_id")}, inverseJoinColumns={@JoinColumn(name = "traveller_id")})
 	public Set<User> getUser() {
