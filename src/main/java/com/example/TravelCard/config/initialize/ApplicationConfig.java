@@ -11,4 +11,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @ComponentScan
 public class ApplicationConfig implements WebMvcConfigurer{
 
+	
+	
 }
