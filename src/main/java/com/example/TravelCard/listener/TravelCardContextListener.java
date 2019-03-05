@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.example.TravelCard.service.startupService.IApplicationStartupService;
+
 @Component
 public class TravelCardContextListener implements ServletContextListener{
 
@@ -19,17 +21,13 @@ public class TravelCardContextListener implements ServletContextListener{
     public void contextInitialized(ServletContextEvent sce) {
         LOG.info("Initializing TravelCard Context...");
         WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(sce.getServletContext());
-        
+        IApplicationStartupService applicationStartupService = context.getBean(IApplicationStartupService.class);
         try {
-            
+        	applicationStartupService.loadAllCache();
         } catch (Exception e) {
             LOG.error("Error while initializing application ", e);
             return;
         }
-
-        LOG.info("Scheduling next cache reload...");
-        
-        LOG.info("lybrate Context Initialized Successfully.");
     }
 
     @Override
