@@ -4,6 +4,8 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +17,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 public class MasterRepositoryConfig {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(MasterRepositoryConfig.class);
 
 	@Value("${spring.datasource.driverClassName}")
 	private String driver;
@@ -39,6 +43,7 @@ public class MasterRepositoryConfig {
 
 	@Bean
 	public DataSource dataSource() {
+		LOG.info("Inside dataSource function...");
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName(driver);
 		dataSource.setUrl(dbUrl);
@@ -49,6 +54,7 @@ public class MasterRepositoryConfig {
 
 	@Bean
 	public LocalSessionFactoryBean sessionFactory() {
+		LOG.info("Session Factory.. LocalSessionFactoryBean...");
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
 		sessionFactory.setPackagesToScan(packagesToScan);
@@ -61,6 +67,7 @@ public class MasterRepositoryConfig {
 	
 	@Bean
 	public HibernateTransactionManager transactionManager() {
+		LOG.info("Transaction Manager..... transactionManager...");
 		HibernateTransactionManager transactionManager = new HibernateTransactionManager();
 		transactionManager.setSessionFactory(sessionFactory().getObject());
 		return transactionManager;
